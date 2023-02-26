@@ -1,0 +1,52 @@
+package com.mayuga.report.techServ;
+
+import java.io.*;
+import java.util.*;
+import com.mayuga.report.domain.*;
+
+public class BlockSectionDA {
+	
+	private File blockSectionFile;
+	
+    private ArrayList<BlockSection> blockSectionList;
+
+    public File getBlockSectionFile() {
+		return blockSectionFile;
+	}
+
+	public void setBlockSectionFile(File blockSectionFile) {
+		this.blockSectionFile = blockSectionFile;
+	}
+
+	public ArrayList<BlockSection> getBlockSection() {
+		return blockSectionList;
+	}
+
+	public void setBlockSectionList(ArrayList<BlockSection> blockSectionList) {
+		this.blockSectionList = blockSectionList;
+	}
+
+	public BlockSectionDA() throws FileNotFoundException {
+		
+    	blockSectionFile = new File("D:/Aggregation/BlockSectionInfo.csv");
+    	blockSectionList = new ArrayList<>();
+ 
+        getBlockSectionFromFile();
+    }
+    
+    private void getBlockSectionFromFile(){
+        try {
+            Scanner scan = new Scanner(blockSectionFile);
+            while(scan.hasNextLine()){
+
+                String blockSection = scan.nextLine();
+                String[] blockDetails = blockSection.split(",");
+ 
+                blockSectionList.add(new BlockSection(blockDetails[0],blockDetails[1],blockDetails[2]));
+            }
+            scan.close();
+        } catch (FileNotFoundException e) {
+            System.err.println("\nFile containing Block Section Data not Found");
+        }
+    }
+}
