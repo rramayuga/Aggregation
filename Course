@@ -1,0 +1,73 @@
+package com.mayuga.report.domain;
+
+import java.util.List;
+
+public class Course {
+	
+	private Student studentNo;
+	private String courseCode;
+	private String courseDescription;
+	private String unit;
+	private String day;
+	private String time;
+
+	private List<Student> studentList;
+	
+	public Student getStudentNo() {
+		return studentNo;
+	}
+	public void setStudentNo(Student studentNo) {
+		this.studentNo = studentNo;
+	}
+	public String getCourseCode() {
+		return courseCode;
+	}
+	public void setCourseCode(String courseCode) {
+		this.courseCode = courseCode;
+	}
+	public String getCourseDescription() {
+		return courseDescription;
+	}
+	public void setCourseDescription(String courseDescription) {
+		this.courseDescription = courseDescription;
+	}
+	public String getUnit() {
+		return unit;
+	}
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
+	public String getDay() {
+		return day;
+	}
+	public void setDay(String day) {
+		this.day = day;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
+	
+	public Course(String courseCode, String courseDescription, String unit, String day, String time) {
+		this.courseCode = courseCode;
+		this.courseDescription = courseDescription;
+		this.unit = unit;
+		this.day = day;
+		this.time = time;
+	}
+	
+	public Course() {
+	}
+	
+	public String toString(){
+        return String.format("Course Code: %s\t\t" +
+                             "Description: %22s\t" +
+                             "Unit: %s\t" + 
+                             "Day: %s\t" +
+                             "Time: %s\n", 
+                             courseCode, courseDescription, unit, day, time);
+    }
+
+}
