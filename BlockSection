@@ -1,0 +1,55 @@
+package com.mayuga.report.domain;
+
+import java.util.List;
+
+public class BlockSection {
+	
+	private String blockSectionCode;
+	private String blockDescription;
+	private String adviserName;
+
+	private List<Course> schedule;
+	
+	public List<Course> getSchedule() {
+		return schedule;
+	}
+	public void setSchedule(List<Course> schedule) {
+		this.schedule = schedule;
+	}
+	
+	public String getBlockSectionCode() {
+		return blockSectionCode;
+	}
+	public void setBlockSectionCode(String blockSectionCode) {
+		this.blockSectionCode = blockSectionCode;
+	}
+	public String getBlockDescription() {
+		return blockDescription;
+	}
+	public void setBlockDescription(String blockDescription) {
+		this.blockDescription = blockDescription;
+	}
+	public String getAdviserName() {
+		return adviserName;
+	}
+	public void setAdviserName(String adviserName) {
+		this.adviserName = adviserName;
+	}
+	
+	public BlockSection (String blockSectionCode, String blockDescription, String adviserName) {
+		this.blockSectionCode = blockSectionCode;
+		this.blockDescription = blockDescription;
+		this.adviserName = adviserName;
+	}
+	
+	public BlockSection() {
+	}
+		
+	public String toString(){
+        return String.format("Block Section: %s\t\t" +
+                             "Block Section Description: %s\t\t\n" +
+                             "Class Adviser: %s\n\n"+
+                             "Students Information: \n", blockSectionCode, blockDescription, adviserName);
+    }
+	
+}
