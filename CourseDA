@@ -1,0 +1,49 @@
+package com.mayuga.report.techServ;
+
+import java.io.*;
+import java.util.*;
+import com.mayuga.report.domain.*;
+
+public class CourseDA {
+	
+	private File courseFile;
+	
+	private HashMap<String, List<Course>> courseList;
+	
+    public HashMap<String, List<Course>> getCourseList() {
+        return courseList;
+    }
+		
+	public CourseDA() throws FileNotFoundException {
+		
+		courseFile = new File("D:/Aggregation/scheduleinfo.csv");
+		courseList = new HashMap<>();
+        getCourseFromFile();
+    }
+	
+	private void getCourseFromFile(){
+        try {
+            Scanner scan = new Scanner(courseFile);
+            
+            while(scan.hasNextLine()){
+                String course = scan.nextLine();
+                String[] courseDetails = course.split(",");
+                if(courseList.containsKey(courseDetails[0])) {
+                courseList.get(courseDetails[0]).
+                	add(new Course(courseDetails[1],courseDetails[2],courseDetails[3],
+                		courseDetails[4],courseDetails[5]));
+            }
+                else {
+                	courseList.put(courseDetails[0],
+                			new ArrayList<>() {
+                		{add(new Course(courseDetails[1],courseDetails[2],courseDetails[3],
+                        		courseDetails[4],courseDetails[5]));}
+                	});
+                }
+            }
+            scan.close();
+        } catch (FileNotFoundException e) {
+            System.err.println("\nFile containing Block Section Data not Found");
+        }
+    }
+}
