@@ -1,0 +1,27 @@
+package com.mayuga.report.main;
+
+import java.io.FileNotFoundException;
+
+import com.mayuga.report.techServ.*;
+import com.mayuga.report.domain.*;
+
+public class COMReport {
+
+	public static void main(String[] args) throws FileNotFoundException {
+		BlockSectionDA blockSectionDA = new BlockSectionDA();
+		StudentDA studentDA = new StudentDA();
+		displayBlockSectionDetails(blockSectionDA);
+		displayStudentDetails(studentDA);
+	}
+
+	private static void displayBlockSectionDetails(BlockSectionDA blockSectionDA){
+		 for(BlockSection blockSection : blockSectionDA.getBlockSection()){
+			 System.out.println(blockSection);
+			 }
+		 }	
+	private static void displayStudentDetails(StudentDA studentDA){
+		 for(Student student : studentDA.getStudentSchedule()){
+			 System.out.println(student);
+			 }
+		 }
+	}
