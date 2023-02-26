@@ -1,0 +1,47 @@
+package com.mayuga.report.techServ;
+
+import java.util.*;
+
+import com.mayuga.report.domain.*;
+
+import java.io.*;
+
+public class StudentDA {
+
+	private final File studentFile;
+
+    private CourseDA courseDA;
+
+    private ArrayList<Student> studentSchedule;
+    
+	public ArrayList<Student> getStudentSchedule() {
+		return studentSchedule;
+	}
+
+    public StudentDA() throws FileNotFoundException {
+		
+    	studentFile = new File("D:/Aggregation/studentinfo.csv");
+
+		studentSchedule = new ArrayList<>();
+		courseDA = new CourseDA();
+        getStudentFile();
+    }
+    
+    private void getStudentFile(){
+        try {
+            Scanner scan = new Scanner(studentFile);
+
+            while (scan.hasNextLine()){
+                String student = scan.nextLine();
+                String[] details = student.split(",");
+                if(studentSchedule.add(
+                			new Student(details[1],details[2], details[0]
+                            		,courseDA.getCourseList().get(details[1]))));
+                	}
+            scan.close();
+        }
+            catch (FileNotFoundException e) {
+            System.err.println("\nFile containing Student Data not Found");
+        }
+    }
+}
